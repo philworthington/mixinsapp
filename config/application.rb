@@ -60,8 +60,8 @@ module Mp3app
     config.assets.version = '1.0'
 
     AWS::S3::Base.establish_connection!(
-        :access_key_id => 'AKIAJRSLR2LATO3QSWKQ',
-        :secret_access_key => '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'
+        :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+        :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
         )
 
     BUCKET = 'mixinsapp'
