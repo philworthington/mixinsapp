@@ -1,0 +1,36 @@
+<header>
+	<h1>MIXINS</h1>
+</header>
+
+<div class="clear"></div>
+<div id="content">
+<section id="sidebar">
+	<h2>Listen</h2>
+	<section id="audio">
+		<audio controls name="media">
+			<source src="http://s3.amazonaws.com/mixinsapp/04_You%20Will.mp3" type="audio/mpeg">
+		</audio>				
+		
+	</section>
+
+	<h2>Upload an mp3</h2>
+	<%= form_tag upload_path, :method => "post", :multipart => true do %>
+	  <%= file_field_tag "mp3file" %>
+	  <%= submit_tag "Upload" %>
+	<% end %>
+</section>
+<section id="main">
+	<h2>In Your Mix</h2>
+	<table>
+	  <% @songs.each do |song| %>
+	  	<tr>
+	  		<td><%= song.key %></td>
+	  		<td><%= link_to "HTML5 Audio", download_url_for(song.key), :class => "html5" %></td>
+	  		<td><%= link_to "Download", download_url_for(song.key) %></td>
+	  		<td><%= link_to "Delete", "songs/delete/?song=" + song.key, :confirm => "Are you sure you want to delete " + song.key + '?' %></td>
+	  	</tr>
+	  <% end %>
+	</table>
+</section>
+</div>
+<div class="clear"></div>
